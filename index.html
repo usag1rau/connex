@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ConneX - つながる、もっとやさしく</title>
-  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono&family=Kaisei+Opti&display=swap" rel="stylesheet">
   <style>
     body {
@@ -15,16 +14,18 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      background: linear-gradient(135deg, #a8edea, #fed6e3);
+      background: linear-gradient(135deg, #a8edea, #c3e9f5);
       transition: background 1s ease;
     }
     .container {
-      text-align: center;
-      padding: 3rem;
+      width: 400px;
+      height: 400px;
       background: white;
       border-radius: 25px;
-      width: 80%;
-      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
       z-index: 1;
     }
@@ -32,15 +33,16 @@
       font-family: 'Space Mono', monospace;
       color: #4A4A4A;
       margin-bottom: 0.5rem;
+      font-size: 2.5rem;
     }
     p {
       color: #666;
       margin-bottom: 1.5rem;
+      font-size: 1.3rem;
     }
     .buttons {
       display: flex;
       gap: 1.5rem;
-      justify-content: center;
     }
     .btn {
       display: inline-block;
@@ -72,25 +74,28 @@
       0% { background-position: 0 0; }
       100% { background-position: 100vw 0; }
     }
-    .sun, .moon {
+    .sun {
       position: absolute;
       width: 100px;
       height: 100px;
-      border-radius: 50%;
-      z-index: 0;
-    }
-    .sun {
       background: radial-gradient(circle, #ffffff, #e0e0e0);
+      border-radius: 50%;
       top: 10%;
       right: 15%;
       box-shadow: 0 0 60px #ffffff;
+      z-index: 0;
     }
     .moon {
+      position: absolute;
+      width: 100px;
+      height: 100px;
       background: radial-gradient(circle, #ffffff, #e0e0e0);
+      border-radius: 50%;
+      clip-path: polygon(30% 0%, 100% 20%, 100% 80%, 30% 100%, 0% 50%);
       top: 12%;
       left: 15%;
-      clip-path: polygon(30% 0%, 100% 20%, 100% 80%, 30% 100%, 0% 50%);
       box-shadow: 0 0 50px #ffffff;
+      z-index: 0;
     }
   </style>
 </head>
