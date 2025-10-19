@@ -3,18 +3,133 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ConneX</title>
+  <title>ConneX - つながる、もっとやさしく</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono&family=Kaisei+Opti&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Kaisei Opti', serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #a8edea, #fed6e3);
+      transition: background 1s ease;
+    }
+    .container {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      z-index: 1;
+    }
+    h1 {
+      font-family: 'Space Mono', monospace;
+      color: #4A4A4A;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(45deg, #9B8AFF, #7A6CFF);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .cloud {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://lab.sonicmoov.com/wp-content/uploads/2020/03/cloud.png');
+      background-repeat: repeat-x;
+      opacity: 0.3;
+      animation: moveClouds 60s linear infinite;
+    }
+    @keyframes moveClouds {
+      0% { background-position: 0 0; }
+      100% { background-position: 100vw 0; }
+    }
+    .sun, .moon {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      z-index: 0;
+    }
+    .sun {
+      background: radial-gradient(circle, #FFD700, #FFA500);
+      top: 10%;
+      right: 15%;
+      box-shadow: 0 0 40px #FFD700;
+    }
+    .moon {
+      background: radial-gradient(circle, #E0D4F7, #B0A0E0);
+      top: 12%;
+      left: 15%;
+      clip-path: polygon(30% 0%, 100% 20%, 100% 80%, 30% 100%, 0% 50%);
+      box-shadow: 0 0 30px #E0D4F7;
+    }
+  </style>
 </head>
-<body>
+<body id="body">
+  <div class="cloud" id="clouds"></div>
+  <div class="sun" id="sun"></div>
+  <div class="moon" id="moon"></div>
+
   <div class="container">
-    <h1 class="mono-text">ConneX</h1>
-    <p>つながる、世界と。</p>
+    <h1>ConneX</h1>
+    <p>つながる、もっとやさしく。</p>
     <div class="buttons">
       <a href="login.html" class="btn">ログイン</a>
       <a href="signup.html" class="btn">新規登録</a>
     </div>
   </div>
+
+  <script>
+    function updateScene() {
+      const now = new Date();
+      const hour = now.getHours();
+      const isDay = hour >= 5 && hour < 17;
+      const body = document.getElementById('body');
+      const sun = document.getElementById('sun');
+      const moon = document.getElementById('moon');
+
+      if (isDay) {
+        body.style.background = 'linear-gradient(135deg, #a8edea, #fed6e3)';
+        sun.style.display = 'block';
+        moon.style.display = 'none';
+      } else {
+        body.style.background = 'linear-gradient(135deg, #2c3e50, #1a1a2e)';
+        sun.style.display = 'none';
+        moon.style.display = 'block';
+      }
+    }
+
+    window.onload = () => {
+      updateScene();
+      setInterval(updateScene, 60000); // 毎分更新
+    };
+  </script>
 </body>
 </html>   
